@@ -485,18 +485,18 @@ _.dropRight([1, 2, 3], 0);
 从尾端查询（右数）数组 `array` ，第一个不满足`predicate` 条件的元素开始截取数组. `thisArg`为`predicate` 条件执行上下文对象绑定的参数 .
 <br>
 <br>
-参数 `predicate` 不为空的时候，返回不满足`predicate`条件的元素.
+参数 `predicate` 提供的是一个属性名称，就通过提供的参数使用 `_.property`方法返回一个回调函数
 <br>
 <br>
-如果参数`thisArg`提供的话，就使用 `_.matchesProperty`方式匹配相同的属性值，相同返回true,不同返回false
+如果参数`thisArg`提供的话，就使用 `_.matchesProperty`方法匹配相同的属性值，相同返回true,不同返回false
 <br>
 <br>
-如果参数`thisArg`提供的话，就使用 `_.matches`方式匹配相同的元素，相同返回true,不同返回false
+如果参数`predicate`提供的是一个对象，就使用 `_.matches`方法匹配相同的元素，相同返回true,不同返回false
 
 #### 参数
 1. `array` *(Array)*: 需要查询的数组
 2. `[predicate=_.identity]` *(Function|Object|string)*: 数组迭代判断条件
-3. `[thisArg]` *(&#42;)*: `predicate`绑定的`this`属性参数
+3. `[thisArg]` *(&#42;)*: 对应 `predicate` 属性的值.
 
 #### 返回值
 *(Array)*:  返回截取元素后的数组
@@ -550,18 +550,18 @@ _.pluck(_.dropRightWhile(users, 'active'), 'user');
 从开头查询（左数起）数组 `array` ，第一个不满足`predicate` 条件的元素开始截取数组. `thisArg`为`predicate` 条件执行上下文对象绑定的参数 .
 <br>
 <br>
-参数 `predicate` 不为空的时候，返回不满足`predicate`条件的元素.
+参数 `predicate` 提供的是一个属性名称，就通过提供的参数使用 `_.property`方法返回一个回调函数
 <br>
 <br>
-如果参数`thisArg`提供的话，就使用 `_.matchesProperty`方式匹配相同的属性值，相同返回true,不同返回false
+如果参数`thisArg`提供的话，就使用 `_.matchesProperty`方法匹配相同的属性值，相同返回true,不同返回false
 <br>
 <br>
-如果参数`thisArg`提供的话，就使用 `_.matches`方式匹配相同的元素，相同返回true,不同返回false
+如果参数`predicate`提供的是一个对象，就使用 `_.matches`方法匹配相同的元素，相同返回true,不同返回false
 
 #### 参数
 1. `array` *(Array)*: 需要查询的数组
 2. `[predicate=_.identity]` *(Function|Object|string)*: 数组遍历的条件
-3. `[thisArg]` *(&#42;)*: `predicate`绑定的`this`属性参数
+3. `[thisArg]` *(&#42;)*:  对应 `predicate` 属性的值.
 
 #### 返回值
 *(Array)*:  返回截取元素后的数组
@@ -600,20 +600,19 @@ _.pluck(_.dropWhile(users, 'active'), 'user');
 ### <a id="_fillarray-value-start0-endarraylength"></a>`_.fill(array, value, [start=0], [end=array.length])`
 <a href="#_fillarray-value-start0-endarraylength">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L4901 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.fill "See the npm package")
 
-Fills elements of `array` with `value` from `start` up to, but not
-including, `end`.
+使用 `value` 值来填充（也就是替换） `array`，从`start`位置开始, 到`end`位置结束（但不包含end位置）
 <br>
 <br>
-**Note:** This method mutates `array`.
+**Note:** 这是个改变数组的方法
 
 #### 参数
-1. `array` *(Array)*: The array to fill.
-2. `value` *(&#42;)*: The value to fill `array` with.
-3. `[start=0]` *(number)*: The start position.
-4. `[end=array.length]` *(number)*: The end position.
-
+1. `array` *(Array)*: 需要填充的数组.
+2. `value` *(&#42;)*: 填充 `array` 元素的值.
+3. `[start=0]` *(number)*: 起始位置（包含）
+4. `[end=array.length]` *(number)*: 结束位置（不含）
+5. 如果`start`和`end`省略，则`value`填充`array`全部元素
 #### 返回值
-*(Array)*:  Returns `array`.
+*(Array)*:  返回 `array` .
 
 #### 例子
 ```js
@@ -638,30 +637,24 @@ _.fill([4, 6, 8], '*', 1, 2);
 ### <a id="_findindexarray-predicate_identity-thisarg"></a>`_.findIndex(array, [predicate=_.identity], [thisArg])`
 <a href="#_findindexarray-predicate_identity-thisarg">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L4961 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.findindex "See the npm package")
 
-This method is like `_.find` except that it returns the index of the first
-element `predicate` returns truthy for instead of the element itself.
+该方法类似 `_.find`，区别是该方法返回的是符合 `predicate`条件的第一个元素的索引，而不是返回元素本身.
 <br>
 <br>
-If a property name is provided for `predicate` the created `_.property`
-style callback returns the property value of the given element.
+参数 `predicate` 提供的是一个属性名称，就通过提供的参数使用 `_.property`方法返回一个回调函数
 <br>
 <br>
-If a value is also provided for `thisArg` the created `_.matchesProperty`
-style callback returns `true` for elements that have a matching property
-value, else `false`.
+如果参数`thisArg`值提供的话，就使用 `_.matchesProperty`方法匹配相同的属性值，相同返回true,不同返回false
 <br>
 <br>
-If an object is provided for `predicate` the created `_.matches` style
-callback returns `true` for elements that have the properties of the given
-object, else `false`.
+如果参数`predicate`提供的是一个对象，就使用 `_.matches`方法匹配相同的元素，相同返回true,不同返回false
 
 #### 参数
-1. `array` *(Array)*: The array to search.
-2. `[predicate=_.identity]` *(Function|Object|string)*: The function invoked per iteration.
-3. `[thisArg]` *(&#42;)*: The `this` binding of `predicate`.
+1. `array` *(Array)*: 需要搜索的数组
+2. `[predicate=_.identity]` *(Function|Object|string)*: 数组遍历满足的条件
+3. `[thisArg]` *(&#42;)*: 对应 `predicate` 属性的值.
 
 #### 返回值
-*(number)*:  Returns the index of the found element, else `-1`.
+*(number)*:  返回符合查询条件的元素的索引值, 未找到则返回 `-1`.
 
 #### 例子
 ```js
@@ -697,30 +690,28 @@ _.findIndex(users, 'active');
 ### <a id="_findlastindexarray-predicate_identity-thisarg"></a>`_.findLastIndex(array, [predicate=_.identity], [thisArg])`
 <a href="#_findlastindexarray-predicate_identity-thisarg">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L5011 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.findlastindex "See the npm package")
 
-This method is like `_.findIndex` except that it iterates over elements
-of `collection` from right to left.
+该方法类似 `_.findIndex` ，区别是其从右到左遍历数组.
 <br>
 <br>
-If a property name is provided for `predicate` the created `_.property`
-style callback returns the property value of the given element.
+该方法类似 `_.find`，区别是该方法返回的是符合 `predicate`条件的第一个元素的索引，而不是返回元素本身.
 <br>
 <br>
-If a value is also provided for `thisArg` the created `_.matchesProperty`
-style callback returns `true` for elements that have a matching property
-value, else `false`.
+参数 `predicate` 提供的是一个属性名称，就通过提供的参数使用 `_.property`方法返回一个回调函数
 <br>
 <br>
-If an object is provided for `predicate` the created `_.matches` style
-callback returns `true` for elements that have the properties of the given
-object, else `false`.
+如果参数`thisArg`值提供的话，就使用 `_.matchesProperty`方法匹配相同的属性值，相同返回true,不同返回false
+<br>
+<br>
+如果参数`predicate`提供的是一个对象，就使用 `_.matches`方法匹配相同的元素，相同返回true,不同返回false
+
 
 #### 参数
-1. `array` *(Array)*: The array to search.
-2. `[predicate=_.identity]` *(Function|Object|string)*: The function invoked per iteration.
+1. `array` *(Array)*: 需要查询的数组
+2. `[predicate=_.identity]` *(Function|Object|string)*: 遍历数组条件
 3. `[thisArg]` *(&#42;)*: The `this` binding of `predicate`.
 
 #### 返回值
-*(number)*:  Returns the index of the found element, else `-1`.
+*(number)*:  返回匹配数组元素的索引值, 否则返回 `-1`.
 
 #### 例子
 ```js
@@ -756,16 +747,16 @@ _.findLastIndex(users, 'active');
 ### <a id="_firstarray"></a>`_.first(array)`
 <a href="#_firstarray">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L5030 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.first "See the npm package")
 
-Gets the first element of `array`.
+获取数组 `array`的第一个元素
 
-#### Aliases
+#### 别名（Aliases）
 *_.head*
 
 #### 参数
-1. `array` *(Array)*: The array to query.
+1. `array` *(Array)*: 需要查询的数组
 
 #### 返回值
-*(&#42;)*:  Returns the first element of `array`.
+*(&#42;)*:  返回数组的第一个元素
 
 #### 例子
 ```js
@@ -778,6 +769,12 @@ _.first([]);
 * * *
 
 <!-- /div -->
+
+> *翻译作者：* **giscafer**
+
+> *博客：*[http://giscafer.com](http://giscafer.com)
+
+> *翻译说明：根据本人个人的理解而译，可能存在有专业术语描述不是很正确的地方*
 
 <!-- div -->
 
@@ -1089,7 +1086,7 @@ console.log(evens);
 
 Gets all but the first element of `array`.
 
-#### Aliases
+#### 别名（Aliases）
 *_.tail*
 
 #### 参数
@@ -1453,7 +1450,7 @@ If an object is provided for `iteratee` the created `_.matches` style
 callback returns `true` for elements that have the properties of the given
 object, else `false`.
 
-#### Aliases
+#### 别名（Aliases）
 *_.unique*
 
 #### 参数
@@ -1626,7 +1623,7 @@ of property names and values. Provide either a single two dimensional array,
 e.g. `[[key1, value1], [key2, value2]]` or two arrays, one of property names
 and one of corresponding values.
 
-#### Aliases
+#### 别名（Aliases）
 *_.object*
 
 #### 参数
@@ -2068,7 +2065,7 @@ _([1, 2, 3]).toString();
 
 Executes the chained sequence to extract the unwrapped value.
 
-#### Aliases
+#### 别名（Aliases）
 *_.prototype.run, _.prototype.toJSON, _.prototype.valueOf*
 
 #### 返回值
@@ -2192,7 +2189,7 @@ If an object is provided for `predicate` the created `_.matches` style
 callback returns `true` for elements that have the properties of the given
 object, else `false`.
 
-#### Aliases
+#### 别名（Aliases）
 *_.all*
 
 #### 参数
@@ -2253,7 +2250,7 @@ If an object is provided for `predicate` the created `_.matches` style
 callback returns `true` for elements that have the properties of the given
 object, else `false`.
 
-#### Aliases
+#### 别名（Aliases）
 *_.select*
 
 #### 参数
@@ -2315,7 +2312,7 @@ If an object is provided for `predicate` the created `_.matches` style
 callback returns `true` for elements that have the properties of the given
 object, else `false`.
 
-#### Aliases
+#### 别名（Aliases）
 *_.detect*
 
 #### 参数
@@ -2436,7 +2433,7 @@ by explicitly returning `false`.
 are iterated like arrays. To avoid this behavior `_.forIn` or `_.forOwn`
 may be used for object iteration.
 
-#### Aliases
+#### 别名（Aliases）
 *_.each*
 
 #### 参数
@@ -2471,7 +2468,7 @@ _.forEach({ 'a': 1, 'b': 2 }, function(n, key) {
 This method is like `_.forEach` except that it iterates over elements of
 `collection` from right to left.
 
-#### Aliases
+#### 别名（Aliases）
 *_.eachRight*
 
 #### 参数
@@ -2556,7 +2553,7 @@ Checks if `target` is in `collection` using
 for equality comparisons. If `fromIndex` is negative, it's used as the offset
 from the end of `collection`.
 
-#### Aliases
+#### 别名（Aliases）
 *_.contains, _.include*
 
 #### 参数
@@ -2707,7 +2704,7 @@ The guarded methods are:<br>
 `trimLeft`, `trimRight`, `trunc`, `random`, `range`, `sample`, `some`,
 `sum`, `uniq`, and `words`
 
-#### Aliases
+#### 别名（Aliases）
 *_.collect*
 
 #### 参数
@@ -2866,7 +2863,7 @@ The guarded methods are:<br>
 `assign`, `defaults`, `defaultsDeep`, `includes`, `merge`, `sortByAll`,
 and `sortByOrder`
 
-#### Aliases
+#### 别名（Aliases）
 *_.foldl, _.inject*
 
 #### 参数
@@ -2903,7 +2900,7 @@ _.reduce({ 'a': 1, 'b': 2 }, function(result, n, key) {
 This method is like `_.reduce` except that it iterates over elements of
 `collection` from right to left.
 
-#### Aliases
+#### 别名（Aliases）
 *_.foldr*
 
 #### 参数
@@ -3074,7 +3071,7 @@ If an object is provided for `predicate` the created `_.matches` style
 callback returns `true` for elements that have the properties of the given
 object, else `false`.
 
-#### Aliases
+#### 别名（Aliases）
 *_.any*
 
 #### 参数
@@ -3807,7 +3804,7 @@ addSquare(1, 2);
 This method is like `_.flow` except that it creates a function that
 invokes the provided functions from right to left.
 
-#### Aliases
+#### 别名（Aliases）
 *_.backflow, _.compose*
 
 #### 参数
@@ -4615,7 +4612,7 @@ their own, not inherited, enumerable properties. Functions and DOM nodes
 are **not** supported. Provide a customizer function to extend support
 for comparing other values.
 
-#### Aliases
+#### 别名（Aliases）
 *_.eq*
 
 #### 参数
@@ -5568,7 +5565,7 @@ The `customizer` is bound to `thisArg` and invoked with five arguments:<br>
 **Note:** This method mutates `object` and is based on
 [`Object.assign`](http://ecma-international.org/ecma-262/6.0/#sec-object.assign).
 
-#### Aliases
+#### 别名（Aliases）
 *_.extend*
 
 #### 参数
@@ -5960,7 +5957,7 @@ _.forOwnRight(new Foo, function(value, key) {
 Creates an array of function property names from all enumerable properties,
 own and inherited, of `object`.
 
-#### Aliases
+#### 别名（Aliases）
 *_.methods*
 
 #### 参数
@@ -7321,7 +7318,7 @@ created callback returns the property value for a given element. If `func`
 is an object the created callback returns `true` for elements that contain
 the equivalent object properties, otherwise it returns `false`.
 
-#### Aliases
+#### 别名（Aliases）
 *_.iteratee*
 
 #### 参数
