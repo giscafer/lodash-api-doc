@@ -770,35 +770,28 @@ _.first([]);
 
 <!-- /div -->
 
-> *翻译作者：* **giscafer**
-
-> *博客：*[http://giscafer.com](http://giscafer.com)
-
-> *翻译说明：根据本人个人的理解而译，可能存在有专业术语描述不是很正确的地方*
-
 <!-- div -->
 
 ### <a id="_flattenarray-isdeep"></a>`_.flatten(array, [isDeep])`
 <a href="#_flattenarray-isdeep">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L5054 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.flatten "See the npm package")
 
-Flattens a nested array. If `isDeep` is `true` the array is recursively
-flattened, otherwise it's only flattened a single level.
+可以理解为将嵌套数组的维数减少，`flattened`（平坦）. 如果 `isDeep` 值为 `true` 时，嵌套数组将递归为一维数组, 否则只减少嵌套数组一个级别的维数.
 
 #### 参数
-1. `array` *(Array)*: The array to flatten.
-2. `[isDeep]` *(boolean)*: Specify a deep flatten.
+1. `array` *(Array)*: 需要`flattened`（减少维数）的嵌套数组
+2. `[isDeep]` *(boolean)*: 是否深递归
 
 #### 返回值
-*(Array)*:  Returns the new flattened array.
+*(Array)*:  返回处理后的数组
 
 #### 例子
 ```js
 _.flatten([1, [2, 3, [4]]]);
-// => [1, 2, 3, [4]]
+// => [1, 2, 3, [4]]  //默认只减少一维
 
 // using `isDeep`
 _.flatten([1, [2, 3, [4]]], true);
-// => [1, 2, 3, 4]
+// => [1, 2, 3, 4] //深递归最终数组只有一维
 ```
 * * *
 
@@ -809,13 +802,13 @@ _.flatten([1, [2, 3, [4]]], true);
 ### <a id="_flattendeeparray"></a>`_.flattenDeep(array)`
 <a href="#_flattendeeparray">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L5075 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.flattendeep "See the npm package")
 
-Recursively flattens a nested array.
+递归地平坦一个嵌套的数组.相当于`_.flatten(array, true)`
 
 #### 参数
-1. `array` *(Array)*: The array to recursively flatten.
+1. `array` *(Array)*: 需要
 
 #### 返回值
-*(Array)*:  Returns the new flattened array.
+*(Array)*:  返回处理后的数组.
 
 #### 例子
 ```js
@@ -831,19 +824,17 @@ _.flattenDeep([1, [2, 3, [4]]]);
 ### <a id="_indexofarray-value-fromindex0"></a>`_.indexOf(array, value, [fromIndex=0])`
 <a href="#_indexofarray-value-fromindex0">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L5108 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.indexof "See the npm package")
 
-Gets the index at which the first occurrence of `value` is found in `array`
-using [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
-for equality comparisons. If `fromIndex` is negative, it's used as the offset
-from the end of `array`. If `array` is sorted providing `true` for `fromIndex`
-performs a faster binary search.
+获取`value`在数组 `array`所在的索引值
+使用 [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+来保证比较的质量（第一个全等`===`的元素）. 如果 `fromIndex` 值是负数, 则从`array`末尾起算. 如果 `fromIndex`为true时，对已排序的数组`array`执行二分（二进制）查找
 
 #### 参数
-1. `array` *(Array)*: The array to search.
-2. `value` *(&#42;)*: The value to search for.
-3. `[fromIndex=0]` *(boolean|number)*: The index to search from or `true` to perform a binary search on a sorted array.
+1. `array` *(Array)*: 需要查找的数组
+2. `value` *(&#42;)*: 需要查找的元素
+3. `[fromIndex=0]` *(boolean|number)*: 查询的位置或者`true`值时对一个已排序的数组进行二分查找.
 
 #### 返回值
-*(number)*:  Returns the index of the matched value, else `-1`.
+*(number)*:  返回元素在数组中的索引位置, else `-1`.
 
 #### 例子
 ```js
@@ -867,13 +858,13 @@ _.indexOf([1, 1, 2, 2], 2, true);
 ### <a id="_initialarray"></a>`_.initial(array)`
 <a href="#_initialarray">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L5139 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.initial "See the npm package")
 
-Gets all but the last element of `array`.
+去除数组最后一个元素`array`.
 
 #### 参数
-1. `array` *(Array)*: The array to query.
+1. `array` *(Array)*: 需要查询的数组.
 
 #### 返回值
-*(Array)*:  Returns the slice of `array`.
+*(Array)*:  返回截取的数组`array`.
 
 #### 例子
 ```js
@@ -889,15 +880,13 @@ _.initial([1, 2, 3]);
 ### <a id="_intersectionarrays"></a>`_.intersection([arrays])`
 <a href="#_intersectionarrays">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L5157 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.intersection "See the npm package")
 
-Creates an array of unique values that are included in all of the provided
-arrays using [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
-for equality comparisons.
+取出各数组中全等的元素，使用 [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)方式平等比较
 
 #### 参数
-1. `[arrays]` *(...Array)*: The arrays to inspect.
+1. `[arrays]` *(...Array)*: 需要检查的数组数组.
 
 #### 返回值
-*(Array)*:  Returns the new array of shared values.
+*(Array)*:  返回共有元素的数组.
 
 #### 例子
 ```js
@@ -913,13 +902,13 @@ _.intersection([1, 2], [4, 2], [2, 1]);
 ### <a id="_lastarray"></a>`_.last(array)`
 <a href="#_lastarray">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L5207 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.last "See the npm package")
 
-Gets the last element of `array`.
+取出数组的最后一个元素 `array`.
 
 #### 参数
-1. `array` *(Array)*: The array to query.
+1. `array` *(Array)*: 查询的数组
 
 #### 返回值
-*(&#42;)*:  Returns the last element of `array`.
+*(&#42;)*:  返回 `array`的最后一个元素.
 
 #### 例子
 ```js
@@ -935,16 +924,15 @@ _.last([1, 2, 3]);
 ### <a id="_lastindexofarray-value-fromindexarraylength-1"></a>`_.lastIndexOf(array, value, [fromIndex=array.length-1])`
 <a href="#_lastindexofarray-value-fromindexarraylength-1">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L5237 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.lastindexof "See the npm package")
 
-This method is like `_.indexOf` except that it iterates over elements of
-`array` from right to left.
+该方法类似 `_.indexOf` ，只不过`_.lastIndexOf`是从右向左遍历数组`array`.
 
 #### 参数
-1. `array` *(Array)*: The array to search.
-2. `value` *(&#42;)*: The value to search for.
-3. `[fromIndex=array.length-1]` *(boolean|number)*: The index to search from or `true` to perform a binary search on a sorted array.
+1. `array` *(Array)*: 查询的数组
+2. `value` *(&#42;)*:查询的元素.
+3. `[fromIndex=array.length-1]` *(boolean|number)*: 查询的起始位置或者为 `true` 时对已排序的数组进行二分查找.
 
 #### 返回值
-*(number)*:  Returns the index of the matched value, else `-1`.
+*(number)*:  返回第一个匹配值的索引值, 查询不到则返回 `-1`.
 
 #### 例子
 ```js
