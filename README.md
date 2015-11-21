@@ -956,19 +956,19 @@ _.lastIndexOf([1, 1, 2, 2], 2, true);
 ### <a id="_pullarray-values"></a>`_.pull(array, [values])`
 <a href="#_pullarray-values">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L5285 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.pull "See the npm package")
 
-Removes all provided values from `array` using
+移除数组`array`中所有和 values 相等的元素，使用
 [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
-for equality comparisons.
+进行全等比较
 <br>
 <br>
-**Note:** Unlike `_.without`, this method mutates `array`.
+**Note:** 不像 `_.without`方法,此方法改变了数组 `array`（并不是原来的数组了）.
 
 #### 参数
-1. `array` *(Array)*: The array to modify.
-2. `[values]` *(...&#42;)*: The values to remove.
+1. `array` *(Array)*: 修改的数组
+2. `[values]` *(...&#42;)*: 移除的元素
 
 #### 返回值
-*(Array)*:  Returns `array`.
+*(Array)*: 返回数组 `array`.
 
 #### 例子
 ```js
@@ -987,19 +987,17 @@ console.log(array);
 ### <a id="_pullatarray-indexes"></a>`_.pullAt(array, [indexes])`
 <a href="#_pullatarray-indexes">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L5332 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.pullat "See the npm package")
 
-Removes elements from `array` corresponding to the given indexes and returns
-an array of the removed elements. Indexes may be specified as an array of
-indexes or as individual arguments.
+移除指定索引的数组元素，并返回移除的元素，索引值明确给出或者是索引数组.
 <br>
 <br>
-**Note:** Unlike `_.at`, this method mutates `array`.
+**Note:** 和 `_.at`方法不同, 此方法改变了数组 `array`（改变后一个新数组了）.
 
 #### 参数
-1. `array` *(Array)*: The array to modify.
-2. `[indexes]` *(...(number|number&#91;&#93;)*: The indexes of elements to remove, specified as individual indexes or arrays of indexes.
+1. `array` *(Array)*: 需要修改的数组
+2. `[indexes]` *(...(number|number&#91;&#93;)*: 需要移除元素的索引, 数组的索引值或者索引数组.
 
 #### 返回值
-*(Array)*:  Returns the new array of removed elements.
+*(Array)*:  返回移除元素后的新数组；
 
 #### 例子
 ```js
