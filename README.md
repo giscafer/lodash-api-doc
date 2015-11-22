@@ -1019,34 +1019,28 @@ console.log(evens);
 ### <a id="_removearray-predicate_identity-thisarg"></a>`_.remove(array, [predicate=_.identity], [thisArg])`
 <a href="#_removearray-predicate_identity-thisarg">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L5379 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.remove "See the npm package")
 
-Removes all elements from `array` that `predicate` returns truthy for
-and returns an array of the removed elements. The predicate is bound to
-`thisArg` and invoked with three arguments: (value, index, array).
+移除数组 `array` 中满足 `predicate` 条件的所有元素 ，返回的是被移除元素数组.
 <br>
 <br>
-If a property name is provided for `predicate` the created `_.property`
-style callback returns the property value of the given element.
+如果参数 `predicate`提供的是一个属性，则使用 `_.property`方法来判断
 <br>
 <br>
-If a value is also provided for `thisArg` the created `_.matchesProperty`
-style callback returns `true` for elements that have a matching property
-value, else `false`.
+如果提供了参数 `thisArg` ，则使用 `_.matchesProperty`方法来判断属性是否等于此`value`
+
 <br>
 <br>
-If an object is provided for `predicate` the created `_.matches` style
-callback returns `true` for elements that have the properties of the given
-object, else `false`.
+如果 `predicate`参数是一个对象，则使用 `_.matches`方法来判断比较这个对象
 <br>
 <br>
-**Note:** Unlike `_.filter`, this method mutates `array`.
+**Note:** 和方法 `_.filter`不一样, 此方法彻底改变数组`array`.
 
 #### 参数
-1. `array` *(Array)*: The array to modify.
-2. `[predicate=_.identity]` *(Function|Object|string)*: The function invoked per iteration.
-3. `[thisArg]` *(&#42;)*: The `this` binding of `predicate`.
+1. `array` *(Array)*: 需要修改的数组
+2. `[predicate=_.identity]` *(Function|Object|string)*: 遍历判断的方法
+3. `[thisArg]` *(&#42;)*: 和参数`predicate`绑定
 
 #### 返回值
-*(Array)*:  Returns the new array of removed elements.
+*(Array)*:  返回被移除元素组成的数组
 
 #### 例子
 ```js
@@ -1070,16 +1064,16 @@ console.log(evens);
 ### <a id="_restarray"></a>`_.rest(array)`
 <a href="#_restarray">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L5414 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.rest "See the npm package")
 
-Gets all but the first element of `array`.
+获取数组 `array`第一个元素除外的所有元素.
 
 #### 别名（Aliases）
 *_.tail*
 
 #### 参数
-1. `array` *(Array)*: The array to query.
+1. `array` *(Array)*: 需要查询的数组
 
 #### 返回值
-*(Array)*:  Returns the slice of `array`.
+*(Array)*:  返回截取的 `array`.
 
 #### 例子
 ```js
@@ -1095,19 +1089,18 @@ _.rest([1, 2, 3]);
 ### <a id="_slicearray-start0-endarraylength"></a>`_.slice(array, [start=0], [end=array.length])`
 <a href="#_slicearray-start0-endarraylength">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L5432 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.slice "See the npm package")
 
-Creates a slice of `array` from `start` up to, but not including, `end`.
+从`start`位置到 `end`（但不包含end位置），截取 `array`数组
 <br>
 <br>
-**Note:** This method is used instead of `Array#slice` to support node
-lists in IE < 9 and to ensure dense arrays are returned.
+**Note:** 此方法是用来在IE9以下版本替代 `Array#slice`来支持节点列表，确保密集数组返回
 
 #### 参数
-1. `array` *(Array)*: The array to slice.
-2. `[start=0]` *(number)*: The start position.
-3. `[end=array.length]` *(number)*: The end position.
+1. `array` *(Array)*: 需要截取的数组.
+2. `[start=0]` *(number)*: 截取开始位置
+3. `[end=array.length]` *(number)*: 结束位置（不包含）
 
 #### 返回值
-*(Array)*:  Returns the slice of `array`.
+*(Array)*:  返回截取后的数组 `array`.
 
 * * *
 
@@ -1118,35 +1111,16 @@ lists in IE < 9 and to ensure dense arrays are returned.
 ### <a id="_sortedindexarray-value-iteratee_identity-thisarg"></a>`_.sortedIndex(array, value, [iteratee=_.identity], [thisArg])`
 <a href="#_sortedindexarray-value-iteratee_identity-thisarg">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L5492 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.sortedindex "See the npm package")
 
-Uses a binary search to determine the lowest index at which `value` should
-be inserted into `array` in order to maintain its sort order. If an iteratee
-function is provided it's invoked for `value` and each element of `array`
-to compute their sort ranking. The iteratee is bound to `thisArg` and
-invoked with one argument; (value).
-<br>
-<br>
-If a property name is provided for `iteratee` the created `_.property`
-style callback returns the property value of the given element.
-<br>
-<br>
-If a value is also provided for `thisArg` the created `_.matchesProperty`
-style callback returns `true` for elements that have a matching property
-value, else `false`.
-<br>
-<br>
-If an object is provided for `iteratee` the created `_.matches` style
-callback returns `true` for elements that have the properties of the given
-object, else `false`.
+ 在对一个有序数组`array`进行插入的时候，返回`value`应该插入的位置。从左向右计算。
 
 #### 参数
-1. `array` *(Array)*: The sorted array to inspect.
-2. `value` *(&#42;)*: The value to evaluate.
-3. `[iteratee=_.identity]` *(Function|Object|string)*: The function invoked per iteration.
-4. `[thisArg]` *(&#42;)*: The `this` binding of `iteratee`.
+1. `array` *(Array)*: 需要检查的数组
+2. `value` *(&#42;)*: 插入的判断参数
+3. `[iteratee=_.identity]` *(Function|Object|string)*: 遍历方法
+4. `[thisArg]` *(&#42;)*:  `iteratee`的绑定值
 
 #### 返回值
-*(number)*:  Returns the index at which `value` should be inserted
-into `array`.
+*(number)*:  返回`value` 应该插入数组`array`位置的索引值
 
 #### 例子
 ```js
@@ -1177,19 +1151,16 @@ _.sortedIndex([{ 'x': 30 }, { 'x': 50 }], { 'x': 40 }, 'x');
 ### <a id="_sortedlastindexarray-value-iteratee_identity-thisarg"></a>`_.sortedLastIndex(array, value, [iteratee=_.identity], [thisArg])`
 <a href="#_sortedlastindexarray-value-iteratee_identity-thisarg">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L5514 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.sortedlastindex "See the npm package")
 
-This method is like `_.sortedIndex` except that it returns the highest
-index at which `value` should be inserted into `array` in order to
-maintain its sort order.
+ 用法类似于 `_.sortedIndex` ,不同的是从右至左计算插入的位置
 
 #### 参数
-1. `array` *(Array)*: The sorted array to inspect.
-2. `value` *(&#42;)*: The value to evaluate.
-3. `[iteratee=_.identity]` *(Function|Object|string)*: The function invoked per iteration.
-4. `[thisArg]` *(&#42;)*: The `this` binding of `iteratee`.
+1. `array` *(Array)*: 需要检查的数组
+2. `value` *(&#42;)*: 插入的判断参数
+3. `[iteratee=_.identity]` *(Function|Object|string)*: 遍历方法
+4. `[thisArg]` *(&#42;)*:  `iteratee`的绑定值
 
 #### 返回值
-*(number)*:  Returns the index at which `value` should be inserted
-into `array`.
+*(number)*:  返回`value` 应该插入数组`array`位置的索引值
 
 #### 例子
 ```js
@@ -1205,14 +1176,14 @@ _.sortedLastIndex([4, 4, 5, 5], 5);
 ### <a id="_takearray-n1"></a>`_.take(array, [n=1])`
 <a href="#_takearray-n1">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L5540 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.take "See the npm package")
 
-Creates a slice of `array` with `n` elements taken from the beginning.
+ 从数组的起始位置开始，取`n`个元素;n默认是1
 
 #### 参数
-1. `array` *(Array)*: The array to query.
-2. `[n=1]` *(number)*: The number of elements to take.
+1. `array` *(Array)*: 需要查询的数组
+2. `[n=1]` *(number)*: 获取的元素个数
 
 #### 返回值
-*(Array)*:  Returns the slice of `array`.
+*(Array)*: 返回取得的数组
 
 #### 例子
 ```js
@@ -1237,14 +1208,14 @@ _.take([1, 2, 3], 0);
 ### <a id="_takerightarray-n1"></a>`_.takeRight(array, [n=1])`
 <a href="#_takerightarray-n1">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L5575 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.takeright "See the npm package")
 
-Creates a slice of `array` with `n` elements taken from the end.
+从数组右侧开始 取得 `n` 个元素;n默认为1 
 
 #### 参数
-1. `array` *(Array)*: The array to query.
-2. `[n=1]` *(number)*: The number of elements to take.
+1. `array` *(Array)*: 需要查询的数组
+2. `[n=1]` *(number)*: 获取的元素个数
 
 #### 返回值
-*(Array)*:  Returns the slice of `array`.
+*(Array)*:  返回截取的数组 `array`.
 
 #### 例子
 ```js
