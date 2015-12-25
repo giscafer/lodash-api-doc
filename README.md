@@ -1328,15 +1328,13 @@ _.pluck(_.takeWhile(users, 'active'), 'user');
 ### <a id="_unionarrays"></a>`_.union([arrays])`
 <a href="#_unionarrays">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L5712 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.union "See the npm package")
 
-Creates an array of unique values, in order, from all of the provided arrays
-using [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
-for equality comparisons.
+对提供的数组元素使用[`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)方式做比较（全等），去除相等的元素（相当于数学中的集合）。
 
 #### 参数
-1. `[arrays]` *(...Array)*: The arrays to inspect.
+1. `[arrays]` *(...Array)*: 需要检查的数组参数.
 
 #### 返回值
-*(Array)*:  Returns the new array of combined values.
+*(Array)*:  返回一个新的组合数组
 
 #### 例子
 ```js
@@ -1352,40 +1350,23 @@ _.union([1, 2], [4, 2], [2, 1]);
 ### <a id="_uniqarray-issorted-iteratee-thisarg"></a>`_.uniq(array, [isSorted], [iteratee], [thisArg])`
 <a href="#_uniqarray-issorted-iteratee-thisarg">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L5765 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.uniq "See the npm package")
 
-Creates a duplicate-free version of an array, using
-[`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
-for equality comparisons, in which only the first occurence of each element
-is kept. Providing `true` for `isSorted` performs a faster search algorithm
-for sorted arrays. If an iteratee function is provided it's invoked for
-each element in the array to generate the criterion by which uniqueness
-is computed. The `iteratee` is bound to `thisArg` and invoked with three
+保留满足条件`第一次出现的`元素，对已经排序的数组可以使用`true`参数来执行更快的搜索算法，如果提供一个`iteratee`函数遍历数组中每个元素来生成标准的唯一性
+计算，`iteratee` is bound to `thisArg` and invoked with three
 arguments: (value, index, array).
-<br>
-<br>
-If a property name is provided for `iteratee` the created `_.property`
-style callback returns the property value of the given element.
-<br>
-<br>
-If a value is also provided for `thisArg` the created `_.matchesProperty`
-style callback returns `true` for elements that have a matching property
-value, else `false`.
-<br>
-<br>
-If an object is provided for `iteratee` the created `_.matches` style
-callback returns `true` for elements that have the properties of the given
-object, else `false`.
+
+简单理解就是取出满足条件的元素，并且取出的元素是第一次出现的那一个
 
 #### 别名（Aliases）
 *_.unique*
 
 #### 参数
-1. `array` *(Array)*: The array to inspect.
-2. `[isSorted]` *(boolean)*: Specify the array is sorted.
-3. `[iteratee]` *(Function|Object|string)*: The function invoked per iteration.
+1. `array` *(Array)*: 需要检查的数组.
+2. `[isSorted]` *(boolean)*: 声明数组是否排序过.
+3. `[iteratee]` *(Function|Object|string)*: 遍历元素的条件，可以是方法，对象或者字符串.
 4. `[thisArg]` *(&#42;)*: The `this` binding of `iteratee`.
 
 #### 返回值
-*(Array)*:  Returns the new duplicate-value-free array.
+*(Array)*:  返回新的`duplicate-value-free`数组.
 
 #### 例子
 ```js
@@ -1415,15 +1396,16 @@ _.uniq([{ 'x': 1 }, { 'x': 2 }, { 'x': 1 }], 'x');
 ### <a id="_unziparray"></a>`_.unzip(array)`
 <a href="#_unziparray">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L5802 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.unzip "See the npm package")
 
-This method is like `_.zip` except that it accepts an array of grouped
-elements and creates an array regrouping the elements to their pre-zip
-configuration.
+和方法 `_.zip` 类似，除了它接受一个分组的数组并创建一个数组元素重组`pre-zip`元素配置.
+也就是`_.zip`的相反操作
+
+
 
 #### 参数
-1. `array` *(Array)*: The array of grouped elements to process.
+1. `array` *(Array)*: 需要重组的数组.
 
 #### 返回值
-*(Array)*:  Returns the new array of regrouped elements.
+*(Array)*:  返回新的重组数组.
 
 #### 例子
 ```js
@@ -1432,6 +1414,7 @@ var zipped = _.zip(['fred', 'barney'], [30, 40], [true, false]);
 
 _.unzip(zipped);
 // => [['fred', 'barney'], [30, 40], [true, false]]
+
 ```
 * * *
 
@@ -1442,17 +1425,15 @@ _.unzip(zipped);
 ### <a id="_unzipwitharray-iteratee-thisarg"></a>`_.unzipWith(array, [iteratee], [thisArg])`
 <a href="#_unzipwitharray-iteratee-thisarg">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L5842 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.unzipwith "See the npm package")
 
-This method is like `_.unzip` except that it accepts an iteratee to specify
-how regrouped values should be combined. The `iteratee` is bound to `thisArg`
-and invoked with four arguments: (accumulator, value, index, group).
+和方法 `_.unzip`类似，除了它接受一个`iteratee`方法指定应该如何重新集结值的总和。方法iteratee绑定thisArg四个参数: (accumulator, value, index, group).
 
 #### 参数
-1. `array` *(Array)*: The array of grouped elements to process.
-2. `[iteratee]` *(Function)*: The function to combine regrouped values.
+1. `array` *(Array)*: 需要重组的数组
+2. `[iteratee]` *(Function)*: 将重新集结值的函数。
 3. `[thisArg]` *(&#42;)*: The `this` binding of `iteratee`.
 
 #### 返回值
-*(Array)*:  Returns the new array of regrouped elements.
+*(Array)*:  返回重新重组的数组
 
 #### 例子
 ```js
@@ -1471,16 +1452,14 @@ _.unzipWith(zipped, _.add);
 ### <a id="_withoutarray-values"></a>`_.without(array, [values])`
 <a href="#_withoutarray-values">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L5873 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.without "See the npm package")
 
-Creates an array excluding all provided values using
-[`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
-for equality comparisons.
+使用[`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)平等的比较（全等`===`），创建一个数组不包括所有提供的值
 
 #### 参数
-1. `array` *(Array)*: The array to filter.
-2. `[values]` *(...&#42;)*: The values to exclude.
+1. `array` *(Array)*: 过滤的数组.
+2. `[values]` *(...&#42;)*: 排除的值.
 
 #### 返回值
-*(Array)*:  Returns the new array of filtered values.
+*(Array)*:  返回过滤排除值后的新数组
 
 #### 例子
 ```js
@@ -1496,14 +1475,13 @@ _.without([1, 2, 1, 3], 1, 2);
 ### <a id="_xorarrays"></a>`_.xor([arrays])`
 <a href="#_xorarrays">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L5893 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.xor "See the npm package")
 
-Creates an array of unique values that is the [symmetric difference](https://en.wikipedia.org/wiki/Symmetric_difference)
-of the provided arrays.
+根据[symmetric difference](https://en.wikipedia.org/wiki/Symmetric_difference)所提供的数组，创建一个惟一值元素的数组
 
 #### 参数
-1. `[arrays]` *(...Array)*: The arrays to inspect.
+1. `[arrays]` *(...Array)*: 检查的数组.
 
 #### 返回值
-*(Array)*:  Returns the new array of values.
+*(Array)*: 返回新数组.
 
 #### 例子
 ```js
@@ -1519,20 +1497,21 @@ _.xor([1, 2], [4, 2]);
 ### <a id="_ziparrays"></a>`_.zip([arrays])`
 <a href="#_ziparrays">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L5923 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.zip "See the npm package")
 
-Creates an array of grouped elements, the first of which contains the first
-elements of the given arrays, the second of which contains the second elements
-of the given arrays, and so on.
+创建一个分组元素的数组,第一个包含第一给定数组的元素,第二个包含第二个元素给定的数组,等等。
 
 #### 参数
-1. `[arrays]` *(...Array)*: The arrays to process.
+1. `[arrays]` *(...Array)*: 参数数组
 
 #### 返回值
-*(Array)*:  Returns the new array of grouped elements.
+*(Array)*:  返回重新分组的数组.
 
 #### 例子
 ```js
 _.zip(['fred', 'barney'], [30, 40], [true, false]);
 // => [['fred', 30, true], ['barney', 40, false]]
+
+ _.zip(['fred', 'barney','a']);
+//=> [['fred'], ['barney'], ['a']]
 ```
 * * *
 
@@ -1543,20 +1522,18 @@ _.zip(['fred', 'barney'], [30, 40], [true, false]);
 ### <a id="_zipobjectprops-values"></a>`_.zipObject(props, [values=[]])`
 <a href="#_zipobjectprops-values">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L5946 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.zipobject "See the npm package")
 
-The inverse of `_.pairs`; this method returns an object composed from arrays
-of property names and values. Provide either a single two dimensional array,
-e.g. `[[key1, value1], [key2, value2]]` or two arrays, one of property names
-and one of corresponding values.
+和方法`_.pairs`相反; 这个方法返回一个对象由数组的属性的名称和值. 提供一个二维数组,
+e.g. `[[key1, value1], [key2, value2]]` 或者是两个数组, 一个是属性名数组，一个是对应属性名值的数组.
 
 #### 别名（Aliases）
 *_.object*
 
 #### 参数
-1. `props` *(Array)*: The property names.
-2. `[values=[]]` *(Array)*: The property values.
+1. `props` *(Array)*: 属性名
+2. `[values=[]]` *(Array)*: 属性值
 
 #### 返回值
-*(Object)*:  Returns the new object.
+*(Object)*:  返回一个新对象.
 
 #### 例子
 ```js
@@ -1575,17 +1552,15 @@ _.zipObject(['fred', 'barney'], [30, 40]);
 ### <a id="_zipwitharrays-iteratee-thisarg"></a>`_.zipWith([arrays], [iteratee], [thisArg])`
 <a href="#_zipwitharrays-iteratee-thisarg">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L5982 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.zipwith "See the npm package")
 
-This method is like `_.zip` except that it accepts an iteratee to specify
-how grouped values should be combined. The `iteratee` is bound to `thisArg`
-and invoked with four arguments: (accumulator, value, index, group).
+该方法类似 `_.zip` 除了接受一个`iteratee`方法指定应该如何结合组合值.
 
 #### 参数
-1. `[arrays]` *(...Array)*: The arrays to process.
-2. `[iteratee]` *(Function)*: The function to combine grouped values.
+1. `[arrays]` *(...Array)*: 执行的数组.
+2. `[iteratee]` *(Function)*: 结合分组值的函数.
 3. `[thisArg]` *(&#42;)*: The `this` binding of `iteratee`.
 
 #### 返回值
-*(Array)*:  Returns the new array of grouped elements.
+*(Array)*:  返回新数组的元素分组.
 
 #### 例子
 ```js
