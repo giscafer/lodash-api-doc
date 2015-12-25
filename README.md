@@ -1,4 +1,4 @@
-# <a href="https://lodash.com/">lodash</a> <span>v3.10.1中文版</span>
+# <a href="https://lodash.com/" target="_blank">lodash</a> <span>v3.10.1中文版</span>
 
 <!-- div class="toc-container" -->
 > *翻译作者：* **giscafer**
@@ -1572,6 +1572,11 @@ _.zipWith([1, 2], [10, 20], [100, 200], _.add);
 <!-- /div -->
 
 <!-- /div -->
+> *翻译作者：* **giscafer**
+
+> *博客：*[http://giscafer.com](http://giscafer.com)
+
+> *翻译说明：根据本人个人的理解而译，可能存在有专业术语描述不是很正确的地方*
 
 <!-- div -->
 
