@@ -1240,31 +1240,15 @@ _.takeRight([1, 2, 3], 0);
 ### <a id="_takerightwhilearray-predicate_identity-thisarg"></a>`_.takeRightWhile(array, [predicate=_.identity], [thisArg])`
 <a href="#_takerightwhilearray-predicate_identity-thisarg">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L5636 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.takerightwhile "See the npm package")
 
-Creates a slice of `array` with elements taken from the end. Elements are
-taken until `predicate` returns falsey. The predicate is bound to `thisArg`
-and invoked with three arguments: (value, index, array).
-<br>
-<br>
-If a property name is provided for `predicate` the created `_.property`
-style callback returns the property value of the given element.
-<br>
-<br>
-If a value is also provided for `thisArg` the created `_.matchesProperty`
-style callback returns `true` for elements that have a matching property
-value, else `false`.
-<br>
-<br>
-If an object is provided for `predicate` the created `_.matches` style
-callback returns `true` for elements that have the properties of the given
-object, else `false`.
+从数组右侧开发，取出满足条件的数据元素.
 
 #### 参数
-1. `array` *(Array)*: The array to query.
-2. `[predicate=_.identity]` *(Function|Object|string)*: The function invoked per iteration.
+1. `array` *(Array)*: 需要查询的数组
+2. `[predicate=_.identity]` *(Function|Object|string)*: 遍历的判断条件
 3. `[thisArg]` *(&#42;)*: The `this` binding of `predicate`.
 
 #### 返回值
-*(Array)*:  Returns the slice of `array`.
+*(Array)*:  返回取出的元素组成的数组 `array`.
 
 #### 例子
 ```js
@@ -1300,31 +1284,15 @@ _.pluck(_.takeRightWhile(users, 'active'), 'user');
 ### <a id="_takewhilearray-predicate_identity-thisarg"></a>`_.takeWhile(array, [predicate=_.identity], [thisArg])`
 <a href="#_takewhilearray-predicate_identity-thisarg">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L5691 "View in source") [&#x24C9;][1] [&#x24C3;](https://www.npmjs.com/package/lodash.takewhile "See the npm package")
 
-Creates a slice of `array` with elements taken from the beginning. Elements
-are taken until `predicate` returns falsey. The predicate is bound to
-`thisArg` and invoked with three arguments: (value, index, array).
-<br>
-<br>
-If a property name is provided for `predicate` the created `_.property`
-style callback returns the property value of the given element.
-<br>
-<br>
-If a value is also provided for `thisArg` the created `_.matchesProperty`
-style callback returns `true` for elements that have a matching property
-value, else `false`.
-<br>
-<br>
-If an object is provided for `predicate` the created `_.matches` style
-callback returns `true` for elements that have the properties of the given
-object, else `false`.
+原理同`takeRightWhile`,不过`takeWhile`方法是从左到右查询。
 
 #### 参数
-1. `array` *(Array)*: The array to query.
-2. `[predicate=_.identity]` *(Function|Object|string)*: The function invoked per iteration.
+1. `array` *(Array)*: 需要查询的数组
+2. `[predicate=_.identity]` *(Function|Object|string)*: 遍历的判断条件
 3. `[thisArg]` *(&#42;)*: The `this` binding of `predicate`.
 
 #### 返回值
-*(Array)*:  Returns the slice of `array`.
+*(Array)*:  返回截取的数组 `array`.
 
 #### 例子
 ```js
