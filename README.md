@@ -1,4 +1,4 @@
-# <a href="https://lodash.com/" target="_blank">lodash</a> <span>v3.10.1中文版</span>
+# <a href="https://lodash.com/" target="_blank">lodash</a> <span>v3.10.1 API中文版</span>
 
 <!-- div class="toc-container" -->
 > *翻译作者：* **giscafer**
