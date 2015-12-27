@@ -1587,45 +1587,37 @@ _.zipWith([1, 2], [10, 20], [100, 200], _.add);
 ### <a id="_value"></a>`_(value)`
 <a href="#_value">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L944 "View in source") [&#x24C9;][1]
 
-Creates a `lodash` object which wraps `value` to enable implicit chaining.
-Methods that operate on and return arrays, collections, and functions can
-be chained together. Methods that retrieve a single value or may return a
-primitive value will automatically end the chain returning the unwrapped
-value. Explicit chaining may be enabled using `_.chain`. The execution of
-chained methods is lazy, that is, execution is deferred until `_#value`
-is implicitly or explicitly called.
+
+`_(value)`建立了一个**隐式链对象**，可以把那些能操作并返回`arrays`（数组）、`collections`（集合）、`functions`（函数）的`.Methods`（lodash的函数）串起来。 那些能返回“唯一值(single value)”或者可能返回原生数据类型（primitive value）会自动结束链式反应。 
+而**显式链**则用`_.chain`的方式实现延迟计算，即：求值操作等到 `_value()`被调用时再执行。
 <br>
 <br>
-Lazy evaluation allows several methods to support shortcut fusion. Shortcut
-fusion is an optimization strategy which merge iteratee calls; this can help
-to avoid the creation of intermediate data structures and greatly reduce the
-number of iteratee executions.
+延迟计算允许一些方法支持`shortcut fusion` 。由于执行被延后了，因此lodash可以进行`shortcut fusion`这样的优化，通过合并链式`iteratee`大大降低迭代的次数。
 <br>
 <br>
-Chaining is supported in custom builds as long as the `_#value` method is
-directly or indirectly included in the build.
+链式支持自定义构建只要`_#value`的方法直接或间接地包含在构建
 <br>
 <br>
-In addition to lodash methods, wrappers have `Array` and `String` methods.
+另外，lodash wrappers 还支持`Array`和`String`的一些方法
 <br>
 <br>
-The wrapper `Array` methods are:<br>
+支持`wrapper`的Array方法有:<br>
 `concat`, `join`, `pop`, `push`, `reverse`, `shift`, `slice`, `sort`,
 `splice`, and `unshift`
 <br>
 <br>
-The wrapper `String` methods are:<br>
+支持`wrapper`的`String`方法有:<br>
 `replace` and `split`
 <br>
 <br>
-The wrapper methods that support shortcut fusion are:<br>
+支持`shortcut fusion`的方法有:<br>
 `compact`, `drop`, `dropRight`, `dropRightWhile`, `dropWhile`, `filter`,
 `first`, `initial`, `last`, `map`, `pluck`, `reject`, `rest`, `reverse`,
 `slice`, `take`, `takeRight`, `takeRightWhile`, `takeWhile`, `toArray`,
 and `where`
 <br>
 <br>
-The chainable wrapper methods are:<br>
+可以链式反应的wrapper方法有:<br>
 `after`, `ary`, `assign`, `at`, `before`, `bind`, `bindAll`, `bindKey`,
 `callback`, `chain`, `chunk`, `commit`, `compact`, `concat`, `constant`,
 `countBy`, `create`, `curry`, `debounce`, `defaults`, `defaultsDeep`,
@@ -1645,7 +1637,7 @@ The chainable wrapper methods are:<br>
 `valuesIn`, `where`, `without`, `wrap`, `xor`, `zip`, `zipObject`, `zipWith`
 <br>
 <br>
-The wrapper methods that are **not** chainable by default are:<br>
+缺省情况下**不能**加在`链条`中间的wrapper方法有:<br>
 `add`, `attempt`, `camelCase`, `capitalize`, `ceil`, `clone`, `cloneDeep`,
 `deburr`, `endsWith`, `escape`, `escapeRegExp`, `every`, `find`, `findIndex`,
 `findKey`, `findLast`, `findLastIndex`, `findLastKey`, `findWhere`, `first`,
@@ -1675,20 +1667,20 @@ otherwise an unwrapped value is returned.
 ```js
 var wrapped = _([1, 2, 3]);
 
-// returns an unwrapped value
+// 隐式链中,reduce是属于不能直接加在"链条中间"(not chainable)的，所以能立即执行计算
 wrapped.reduce(function(total, n) {
   return total + n;
 });
 // => 6
 
-// returns a wrapped value
+//  而map是chainable的
 var squares = wrapped.map(function(n) {
   return n * n;
 });
-
+//所以不调用value()时返回的并不是一个Array而是一个wrapper
 _.isArray(squares);
 // => false
-
+//调用了value后返回的就是一个Array了
 _.isArray(squares.value());
 // => true
 ```
