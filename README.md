@@ -5,7 +5,7 @@
 
 > *博客：*[http://giscafer.com](http://giscafer.com)
 
-> *翻译说明：根据本人个人的理解而译，可能存在有专业术语描述不是很正确的地方*
+> *翻译说明：根据本人个人的理解而译，英文水平有限，可能存在有专业术语描述不是很正确的地方*
 
 <!-- div -->
 
@@ -1661,7 +1661,7 @@ otherwise an unwrapped value is returned.
 1. `value` *(&#42;)*: The value to wrap in a `lodash` instance.
 
 #### 返回值
-*(Object)*:  Returns the new `lodash` wrapper instance.
+*(Object)*:  返回一个新的 `lodash` wrapper 实例.
 
 #### 例子
 ```js
