@@ -1688,14 +1688,13 @@ _.isArray(squares.value());
 ### <a id="_chainvalue"></a>`_.chain(value)`
 <a href="#_chainvalue">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L6025 "View in source") [&#x24C9;][1]
 
-Creates a `lodash` object that wraps `value` with explicit method
-chaining enabled.
+创建一个绑定 `value` 方法的链式`lodash`对象
 
 #### 参数
 1. `value` *(&#42;)*: The value to wrap.
 
 #### 返回值
-*(Object)*:  Returns the new `lodash` wrapper instance.
+*(Object)*:  返回新的 `lodash` wrapper实例
 
 #### 例子
 ```js
