@@ -1727,6 +1727,8 @@ bound to `thisArg` and invoked with one argument; (value). The purpose of
 this method is to "tap into" a method chain in order to perform operations
 on intermediate results within the chain.
 
+拦截器，你可以在链条当中插它一下，可以对数据进行处理，可以返回值也可以不返回值，也可以仅仅是打印一下中间的过程，拿tap来debug 链式反应的过程是不错的选择。
+
 #### 参数
 1. `value` *(&#42;)*: The value to provide to `interceptor`.
 2. `interceptor` *(Function)*: The function to invoke.
