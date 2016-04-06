@@ -1758,6 +1758,8 @@ _([1, 2, 3])
 
 This method is like `_.tap` except that it returns the result of `interceptor`.
 
+和`tap`非常相似，但是必须有返回值
+
 #### 参数
 1. `value` *(&#42;)*: The value to provide to `interceptor`.
 2. `interceptor` *(Function)*: The function to invoke.
@@ -1788,8 +1790,10 @@ _('  abc  ')
 
 Enables explicit method chaining on the wrapper object.
 
+包装一个对象，使其具有显式的链式的方法
+
 #### 返回值
-*(Object)*:  Returns the new `lodash` wrapper instance.
+*(Object)*:  返回一个新的 `lodash`包装实例对象.
 
 #### 例子
 ```js
@@ -1819,6 +1823,8 @@ _(users).chain()
 <a href="#_prototypecommit">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L6138 "View in source") [&#x24C9;][1]
 
 Executes the chained sequence and returns the wrapped result.
+
+执行链接序列并返回链式包装的结果。
 
 #### 返回值
 *(Object)*:  Returns the new `lodash` wrapper instance.
