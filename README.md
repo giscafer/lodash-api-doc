@@ -1859,6 +1859,8 @@ console.log(array);
 Creates a new array joining a wrapped array with any additional arrays
 and/or values.
 
+链接任意的数组或者值，返回一个新数组
+
 #### 参数
 1. `[values]` *(...&#42;)*: The values to concatenate.
 
