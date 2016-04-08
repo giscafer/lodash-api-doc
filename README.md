@@ -1859,7 +1859,7 @@ console.log(array);
 Creates a new array joining a wrapped array with any additional arrays
 and/or values.
 
-链接任意的数组或者值，返回一个新数组
+新建一个数组，将原始数组与新加入的值合并起来
 
 #### 参数
 1. `[values]` *(...&#42;)*: The values to concatenate.
@@ -1888,6 +1888,9 @@ console.log(array);
 <a href="#_prototypeplant">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L6192 "View in source") [&#x24C9;][1]
 
 Creates a clone of the chained sequence planting `value` as the wrapped value.
+
+克隆一个已有的操作链
+
 
 #### 返回值
 *(Object)*:  Returns the new `lodash` wrapper instance.
@@ -1919,9 +1922,12 @@ wrapped.value();
 
 Reverses the wrapped array so the first element becomes the last, the
 second element becomes the second to last, and so on.
+
+反转数组元素的次序
+
 <br>
 <br>
-**Note:** This method mutates the wrapped array.
+**Note:** 此方法会改变被操作的数组.
 
 #### 返回值
 *(Object)*:  Returns the new reversed `lodash` wrapper instance.
@@ -1965,6 +1971,8 @@ _([1, 2, 3]).toString();
 <a href="#_prototypevalue">#</a> [&#x24C8;](https://github.com/lodash/lodash/blob/3.10.1/lodash.src.js#L6277 "View in source") [&#x24C9;][1]
 
 Executes the chained sequence to extract the unwrapped value.
+
+将unwrapped 的值转为字符串
 
 #### 别名（Aliases）
 *_.prototype.run, _.prototype.toJSON, _.prototype.valueOf*
