@@ -1953,6 +1953,8 @@ console.log(array);
 
 Produces the result of coercing the unwrapped value to a string.
 
+将unwrapped 的值转为字符串
+
 #### 返回值
 *(string)*:  Returns the coerced string value.
 
@@ -1972,7 +1974,7 @@ _([1, 2, 3]).toString();
 
 Executes the chained sequence to extract the unwrapped value.
 
-将unwrapped 的值转为字符串
+执行操作连，提取出unwrapped 的值
 
 #### 别名（Aliases）
 *_.prototype.run, _.prototype.toJSON, _.prototype.valueOf*
