@@ -2006,12 +2006,14 @@ Creates an array of elements corresponding to the given keys, or indexes,
 of `collection`. Keys may be specified as individual arguments or as arrays
 of keys.
 
+根据所给的索引值`indexes`和键值`keys`，获取`collection`里边的元素
+
 #### 参数
 1. `collection` *(Array|Object|string)*: The collection to iterate over.
 2. `[props]` *(...(number|number&#91;&#93;|string|string&#91;&#93;)*: The property names or indexes of elements to pick, specified individually or in arrays.
 
 #### 返回值
-*(Array)*:  Returns the new array of picked elements.
+*(Array)*:  返回挑选出来的元素.
 
 #### 例子
 ```js
