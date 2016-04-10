@@ -1,7 +1,7 @@
 # <a href="https://lodash.com/" target="_blank">lodash</a> <span>v3.10.1 API中文版</span>
 
 <!-- div class="toc-container" -->
-> *翻译作者：* **giscafer**
+> *翻译作者：* [giscafer](https://github.com/giscafer)
 
 > *博客：*[http://giscafer.com](http://giscafer.com)
 
@@ -1648,6 +1648,9 @@ and `where`
 `startsWith`, `sum`, `template`, `trim`, `trimLeft`, `trimRight`, `trunc`,
 `unescape`, `uniqueId`, `value`, and `words`
 <br>
+
+> *翻译作者：* [giscafer](https://github.com/giscafer)
+
 <br>
 The wrapper method `sample` will return a wrapped value when `n` is provided,
 otherwise an unwrapped value is returned.
@@ -2051,6 +2054,8 @@ value, else `false`.
 If an object is provided for `iteratee` the created `_.matches` style
 callback returns `true` for elements that have the properties of the given
 object, else `false`.
+
+按照条件 `iteratee`计算每个元素的个数，返回一个对象，key为元素，value为count的个数
 
 #### 参数
 1. `collection` *(Array|Object|string)*: The collection to iterate over.
